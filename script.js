@@ -29,10 +29,26 @@ const tarotCards = [
   { name: "世界", description: "世界牌象徵圓滿、成就與旅程的完成。" }
 ];
 
+const zodiacFortunes = {
+  "牡羊座": "今天充滿行動力，適合積極主動出擊！",
+  "金牛座": "保持穩定是你的優勢，適合規劃未來。",
+  "雙子座": "適合交流與學習，拓展新知識領域。",
+  "巨蟹座": "家庭和情感是今日的重心，重視關懷。",
+  "獅子座": "自信滿滿，舞台屬於你，展現魅力！",
+  "處女座": "細心會帶來好結果，記得兼顧休息。",
+  "天秤座": "適合人際交流，找到平衡與合作。",
+  "天蠍座": "直覺敏銳，適合深入研究與專注行動。",
+  "射手座": "心境開朗，適合冒險與探索新領域。",
+  "魔羯座": "努力付出終有回報，堅持就是力量！",
+  "水瓶座": "創意十足，靈感湧現，適合創新。",
+  "雙魚座": "感性豐富，適合靜心與藝術活動。"
+};
+
 function drawCard() {
   const inputCode = document.getElementById("codeInput").value.trim();
   const resultDiv = document.getElementById("cardResult");
   const cardContainer = document.getElementById("cardContainer");
+  const zodiacSection = document.getElementById("zodiacSection");
 
   if (inputCode !== validCode) {
     resultDiv.innerText = "❌ 代碼錯誤，請確認您是會員並輸入正確代碼。";
@@ -40,12 +56,24 @@ function drawCard() {
   }
 
   const drawn = tarotCards[Math.floor(Math.random() * tarotCards.length)];
-
-  cardContainer.innerHTML = ""; // 不顯示圖片
+  cardContainer.innerHTML = ""; // 清空圖片區
 
   resultDiv.innerHTML = `
     🃏 您抽到的是：<br>
     <strong>${drawn.name}</strong><br>
     ${drawn.description}
   `;
+
+  zodiacSection.style.display = "block"; // 顯示輸入星座區
+}
+
+function showZodiacFortune() {
+  const zodiacInput = document.getElementById("zodiacInput").value.trim();
+  const zodiacResult = document.getElementById("zodiacResult");
+
+  if (zodiacFortunes[zodiacInput]) {
+    zodiacResult.innerHTML = `🔮 今日${zodiacInput}運勢：<br>${zodiacFortunes[zodiacInput]}`;
+  } else {
+    zodiacResult.innerHTML = "❌ 請輸入正確的中文星座名稱，例如：獅子座";
+  }
 }
