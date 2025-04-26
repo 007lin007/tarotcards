@@ -39,18 +39,11 @@ function drawCard() {
     return;
   }
 
-  const today = new Date().toDateString();
-  if (localStorage.getItem("drawnToday") === today) {
-    resultDiv.innerText = "📅 您今天已經抽過了，請明天再來！";
-    return;
-  }
-
   cardImg.classList.add('flipped');
 
   setTimeout(() => {
     const drawn = tarotCards[Math.floor(Math.random() * tarotCards.length)];
     cardImg.src = `cards/${drawn.image}`;
     resultDiv.innerHTML = `🃏 您抽到的是：<br><strong>${drawn.name}</strong><br>${drawn.description}`;
-    localStorage.setItem("drawnToday", today);
   }, 600);
 }
