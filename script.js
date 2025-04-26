@@ -41,7 +41,7 @@ function drawCard() {
 
   const drawn = tarotCards[Math.floor(Math.random() * tarotCards.length)];
 
-  cardContainer.innerHTML = `<img src="cards/${drawn.image}" alt="${drawn.name}" style="width:200px;">`;
+  cardContainer.innerHTML = `<img src="cards/${drawn.image}" alt="${drawn.name}" class="tarot-card-image">`;
 
   resultDiv.innerHTML = `🃏 您抽到的是：<br><strong>${drawn.name}</strong><br>${drawn.description}`;
 }
