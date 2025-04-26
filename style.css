@@ -47,3 +47,9 @@ button:hover {
   font-size: 1.2rem;
   color: #333;
 }
+.tarot-card-image {
+  width: 90%;
+  max-width: 400px;
+  height: auto;
+  margin-top: 20px;
+}
