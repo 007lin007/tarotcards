@@ -4,6 +4,7 @@ const month = ("0" + (today.getMonth() + 1)).slice(-2);
 const day = ("0" + today.getDate()).slice(-2);
 const validCode = `LEO${year}${month}${day}`; // 自動生成今日代碼
 
+// 塔羅牌故事 (文字版)
 const tarotCards = [
   { name: "愚者", description: "愚者象徵新的旅程、自由與無限可能。" },
   { name: "魔術師", description: "魔術師代表創造力與掌控現實的力量。" },
@@ -29,19 +30,20 @@ const tarotCards = [
   { name: "世界", description: "世界牌象徵圓滿、成就與旅程的完成。" }
 ];
 
-const zodiacFortunes = {
-  "牡羊座": "今天充滿行動力，適合積極主動出擊！",
-  "金牛座": "保持穩定是你的優勢，適合規劃未來。",
-  "雙子座": "適合交流與學習，拓展新知識領域。",
-  "巨蟹座": "家庭和情感是今日的重心，重視關懷。",
-  "獅子座": "自信滿滿，舞台屬於你，展現魅力！",
-  "處女座": "細心會帶來好結果，記得兼顧休息。",
-  "天秤座": "適合人際交流，找到平衡與合作。",
-  "天蠍座": "直覺敏銳，適合深入研究與專注行動。",
-  "射手座": "心境開朗，適合冒險與探索新領域。",
-  "魔羯座": "努力付出終有回報，堅持就是力量！",
-  "水瓶座": "創意十足，靈感湧現，適合創新。",
-  "雙魚座": "感性豐富，適合靜心與藝術活動。"
+// 中文星座對英文對照表
+const zodiacMap = {
+  "牡羊座": "aries",
+  "金牛座": "taurus",
+  "雙子座": "gemini",
+  "巨蟹座": "cancer",
+  "獅子座": "leo",
+  "處女座": "virgo",
+  "天秤座": "libra",
+  "天蠍座": "scorpio",
+  "射手座": "sagittarius",
+  "魔羯座": "capricorn",
+  "水瓶座": "aquarius",
+  "雙魚座": "pisces"
 };
 
 function drawCard() {
@@ -56,7 +58,7 @@ function drawCard() {
   }
 
   const drawn = tarotCards[Math.floor(Math.random() * tarotCards.length)];
-  cardContainer.innerHTML = ""; // 清空圖片區
+  cardContainer.innerHTML = ""; // 不顯示圖片
 
   resultDiv.innerHTML = `
     🃏 您抽到的是：<br>
@@ -64,16 +66,41 @@ function drawCard() {
     ${drawn.description}
   `;
 
-  zodiacSection.style.display = "block"; // 顯示輸入星座區
+  zodiacSection.style.display = "block"; // 顯示星座輸入區
 }
 
-function showZodiacFortune() {
+// 使用 CORS Anywhere 中繼代理，解決跨域問題
+async function fetchZodiacFortune() {
   const zodiacInput = document.getElementById("zodiacInput").value.trim();
   const zodiacResult = document.getElementById("zodiacResult");
 
-  if (zodiacFortunes[zodiacInput]) {
-    zodiacResult.innerHTML = `🔮 今日${zodiacInput}運勢：<br>${zodiacFortunes[zodiacInput]}`;
-  } else {
-    zodiacResult.innerHTML = "❌ 請輸入正確的中文星座名稱，例如：獅子座";
+  if (!zodiacMap[zodiacInput]) {
+    zodiacResult.innerHTML = "❌ 請輸入正確的中文星座，例如：獅子座";
+    return;
+  }
+
+  const zodiacEng = zodiacMap[zodiacInput];
+
+  try {
+    const response = await fetch(`https://cors-anywhere.herokuapp.com/https://aztro.sameerkumar.website/?sign=${zodiacEng}&day=today`, {
+      method: 'POST',
+      headers: {
+        'Origin': 'https://your-site.pages.dev' // 可選，可留空
+      }
+    });
+    const data = await response.json();
+
+    zodiacResult.innerHTML = `
+      🔮 <strong>${zodiacInput} - 今日運勢</strong><br><br>
+      ✨ 整體運勢：${data.description}<br>
+      💖 愛情運勢時段：${data.lucky_time}<br>
+      💰 財運最佳搭配：${data.compatibility}<br>
+      🧘 健康情緒建議：${data.mood}<br>
+      🎨 幸運色：${data.color}<br>
+      🔢 幸運數字：${data.lucky_number}
+    `;
+  } catch (error) {
+    console.error(error);
+    zodiacResult.innerHTML = "⚡️ 抱歉，連接星座運勢伺服器失敗，請稍後再試！";
   }
 }
