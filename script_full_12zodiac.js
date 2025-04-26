@@ -8,6 +8,8 @@ const dayOfYear = Math.floor((today - new Date(year, 0, 0)) / 86400000);
 
 // 每日代碼表
 const dailyCodes = {
+  "2025-4-26": "afu006",
+  "2025-4-27": "afu007",
   "2025-4-28": "M4X9B2",
   "2025-4-29": "Z8C1A5",
   "2025-4-30": "R7D2K8",
