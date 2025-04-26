@@ -1,23 +1,41 @@
 body {
+  background: linear-gradient(to right, #f5f7fa, #c3cfe2);
   font-family: 'Noto Sans TC', sans-serif;
-  background: linear-gradient(to right, #f8e1f4, #e1f4f8);
   margin: 0;
   padding: 0;
+  color: #333;
+}
+
+.container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #ffffffd9;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
-.start-page, .draw-page {
-  margin-top: 50px;
+h1 {
+  margin-bottom: 20px;
+  color: #6a5acd;
+}
+
+h2 {
+  color: #4b0082;
+  margin-top: 20px;
 }
 
 input, button {
   padding: 10px;
-  margin: 10px;
+  margin: 10px 0;
   font-size: 1rem;
+  width: 80%;
+  max-width: 300px;
 }
 
 button {
-  background-color: #8ec5fc;
+  background: #6a5acd;
   border: none;
   color: white;
   border-radius: 5px;
@@ -25,31 +43,26 @@ button {
 }
 
 button:hover {
-  background-color: #6fa8dc;
+  background: #483d8b;
 }
 
-.card-container {
+#cardResult, #zodiacResult {
   margin-top: 20px;
+  font-size: 1.1rem;
+  line-height: 1.5;
 }
 
-.card-container img {
-  width: 200px;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  cursor: pointer;
-}
-.flipped {
-  transform: rotateY(180deg);
+.footer {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: #555;
 }
 
-#cardResult {
-  margin-top: 20px;
-  font-size: 1.2rem;
-  color: #333;
+.footer a {
+  color: #6a5acd;
+  text-decoration: none;
 }
-.tarot-card-image {
-  width: 90%;
-  max-width: 400px;
-  height: auto;
-  margin-top: 20px;
+
+.footer a:hover {
+  text-decoration: underline;
 }
