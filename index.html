@@ -3,30 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>塔羅抽牌＋今日星座運勢</title>
+  <title>今日塔羅與星座運勢</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>🔮 今日塔羅指引 🔮</h1>
+    <h1>🔮 今日塔羅與星座指引 🔮</h1>
 
     <div class="draw-section">
-      <h2>輸入今日代碼開始抽牌</h2>
+      <h2>輸入今日代碼抽牌</h2>
       <input type="text" id="codeInput" placeholder="請輸入代碼">
       <button onclick="drawCard()">抽牌</button>
-
       <div class="card-container" id="cardContainer"></div>
       <div id="cardResult"></div>
     </div>
 
     <div id="zodiacSection" style="display:none;">
-      <h2>🎯 再輸入你的星座，查看今日運勢！</h2>
+      <h2>🎯 輸入你的星座，查看今日運勢</h2>
       <input type="text" id="zodiacInput" placeholder="例如：獅子座">
-      <button onclick="fetchZodiacFortune()">查看星座運勢</button>
-      <div id="zodiacResult"></div>
+      <button onclick="showZodiacFortune()">查看星座運勢</button>
+      <div id="fortuneResult"></div>
     </div>
-
-    <!-- 已刪除 IG 引導區域 -->
   </div>
 
   <script src="script.js"></script>
