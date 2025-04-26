@@ -41,7 +41,11 @@ function drawCard() {
 
   const drawn = tarotCards[Math.floor(Math.random() * tarotCards.length)];
 
-  cardContainer.innerHTML = ""; // 這裡清空，不顯示圖片了！
+  cardContainer.innerHTML = ""; // 不顯示圖片
 
-  resultDiv.innerHTML = `🃏 您抽到的是：<br><strong>${drawn.name}</strong><br>${drawn.description}`;
+  resultDiv.innerHTML = `
+    🃏 您抽到的是：<br>
+    <strong>${drawn.name}</strong><br>
+    ${drawn.description}
+  `;
 }
