@@ -11,10 +11,21 @@
     <h2>輸入今日代碼開始抽牌</h2>
     <input type="text" id="codeInput" placeholder="請輸入代碼">
     <button onclick="drawCard()">抽牌</button>
+
     <div class="card-container" id="cardContainer">
-      <!-- 這裡一開始是空的，抽牌後會出現正面牌 -->
+      <!-- 抽牌後會出現文字 -->
     </div>
+
     <div id="cardResult"></div>
+
+    <!-- 新增 星座輸入區塊 -->
+    <div id="zodiacSection" style="display:none; margin-top: 20px;">
+      <h3>輸入你的星座，看看今日運勢！</h3>
+      <input type="text" id="zodiacInput" placeholder="例如：獅子座">
+      <button onclick="showZodiacFortune()">查看運勢</button>
+      <div id="zodiacResult" style="margin-top: 20px;"></div>
+    </div>
+
   </div>
   <script src="script.js"></script>
 </body>
