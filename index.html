@@ -1,19 +1,21 @@
-
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>每日塔羅牌抽卡</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>抽牌頁面</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="container">
-        <h2>今日塔羅牌抽卡</h2>
-        <input type="text" id="codeInput" placeholder="請輸入今日代碼" />
-        <button onclick="drawCard()">抽牌</button>
-        <div id="result"></div>
+  <div class="draw-page">
+    <h2>輸入今日代碼開始抽牌</h2>
+    <input type="text" id="codeInput" placeholder="請輸入代碼">
+    <button onclick="drawCard()">抽牌</button>
+    <div class="card-container" id="cardContainer">
+      <img id="cardBack" src="images/back.jpg" alt="背面牌">
     </div>
-    <script src="script.js"></script>
+    <div id="cardResult"></div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
