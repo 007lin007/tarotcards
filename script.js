@@ -6,7 +6,7 @@ const day = today.getDate();
 const todayKey = `${year}-${month}-${day}`;
 const dayOfYear = Math.floor((today - new Date(year, 0, 0)) / 86400000);
 
-// === 每日代碼（大小寫不敏感） ===
+// === 每日代碼表（大小寫無感） ===
 const dailyCodes = {
   "2025-4-28": "M4X9B2",
   "2025-4-29": "Z8C1A5",
@@ -17,30 +17,32 @@ const dailyCodes = {
   "2025-5-4":  "W3N8X7"
 };
 
-const universalCode = "FREEPASS"; // 通用代碼
+const universalCode = "FREEPASS"; // 通用無限使用代碼
 
-// === 塔羅牌簡單資料 ===
+// === 塔羅牌資料 ===
 const tarotCards = [
   { name: "愚者", description: "今天是探索與自由的開始，勇敢前進吧。" },
   { name: "魔術師", description: "掌握手中的資源，今天適合主動創造機會。" },
   { name: "女祭司", description: "內在智慧引導你，今天適合傾聽直覺。" }
 ];
 
-// === 代碼驗證（大小寫無視） ===
+// === 代碼驗證函數（修正版） ===
 function verifyCode(inputCode) {
-  const hasUsed = localStorage.getItem('codeUsed_' + todayKey);
   const inputUpper = inputCode.toUpperCase();
+
+  if (inputUpper === universalCode) {
+    return true; // 無限次通用代碼，直接通過
+  }
 
   const todayCode = dailyCodes[todayKey];
   const todayCodeUpper = todayCode ? todayCode.toUpperCase() : "";
+  const hasUsed = localStorage.getItem('codeUsed_' + todayKey);
 
-  if (inputUpper === universalCode) {
-    return true;
-  }
   if (inputUpper === todayCodeUpper && !hasUsed) {
     localStorage.setItem('codeUsed_' + todayKey, 'true');
     return true;
   }
+
   return false;
 }
 
@@ -67,7 +69,7 @@ function drawCard() {
   zodiacSection.style.display = "block";
 }
 
-// === 顯示星座運勢 ===
+// === 顯示星座運勢流程 ===
 function showZodiacFortune() {
   const zodiacInput = document.getElementById("zodiacInput").value.trim();
   const fortuneResult = document.getElementById("fortuneResult");
@@ -88,7 +90,6 @@ function showZodiacFortune() {
     </div>
   `;
 }
-
 // === 星座運勢資料（完整12星座 × 30天） ===
 const zodiacFortunes = {
   "獅子座": [
