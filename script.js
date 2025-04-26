@@ -26,12 +26,12 @@ const tarotCards = [
   { name: "女祭司", description: "內在智慧引導你，今天適合傾聽直覺。" }
 ];
 
-// === 代碼驗證 ===
+// === 新版代碼驗證 ===
 function verifyCode(inputCode) {
   const inputUpper = inputCode.toUpperCase();
 
   if (inputUpper === universalCode) {
-    return true;
+    return "freepass";
   }
 
   const todayCode = dailyCodes[todayKey];
@@ -40,20 +40,22 @@ function verifyCode(inputCode) {
 
   if (inputUpper === todayCodeUpper && !hasUsed) {
     localStorage.setItem('codeUsed_' + todayKey, 'true');
-    return true;
+    return "todaypass";
   }
 
-  return false;
+  return "fail";
 }
 
-// === 抽塔羅牌 ===
+// === 新版抽塔羅牌流程 ===
 function drawCard() {
   const code = document.getElementById("codeInput").value.trim();
   const cardContainer = document.getElementById("cardContainer");
   const resultDiv = document.getElementById("cardResult");
   const zodiacSection = document.getElementById("zodiacSection");
 
-  if (!verifyCode(code)) {
+  const verifyResult = verifyCode(code);
+
+  if (verifyResult === "fail") {
     resultDiv.innerHTML = "<p style='color:red;'>❌ 無效或已使用過的代碼，請確認！</p>";
     return;
   }
@@ -91,8 +93,8 @@ function showZodiacFortune() {
   `;
 }
 
-// === 星座運勢 ===
+// === 星座運勢 (請自行補齊資料) ===
 const zodiacFortunes = {
   "獅子座": ["今天勇敢表達你的想法...", "..."],
-  // 其他星座資料，請自行補上完整內容
+  // 其他星座...
 };
