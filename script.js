@@ -1,50 +1,123 @@
 const tarotCards = [
-  { name: "The Fool", meaning: "新的開始，自由，冒險" },
-  { name: "The Magician", meaning: "掌握資源，實現願望" },
-  { name: "The High Priestess", meaning: "直覺，潛意識，神祕" },
-  { name: "The Empress", meaning: "豐饒，母性，自然" },
-  { name: "The Emperor", meaning: "穩定，結構，領導" },
-  { name: "The Hierophant", meaning: "傳統，信仰，導師" },
-  { name: "The Lovers", meaning: "關係，選擇，愛" },
-  { name: "The Chariot", meaning: "勝利，意志力，控制" },
-  { name: "Strength", meaning: "內在力量，勇氣，耐心" },
-  { name: "The Hermit", meaning: "尋找真理，內省，孤獨" },
-  { name: "Wheel of Fortune", meaning: "命運轉變，週期，機會" },
-  { name: "Justice", meaning: "公平，因果，真相" },
-  { name: "The Hanged Man", meaning: "暫停，轉變觀點，放下" },
-  { name: "Death", meaning: "結束，重生，蛻變" },
-  { name: "Temperance", meaning: "平衡，節制，融合" },
-  { name: "The Devil", meaning: "束縛，誘惑，慾望" },
-  { name: "The Tower", meaning: "突發改變，覺醒，崩壞" },
-  { name: "The Star", meaning: "希望，靈感，療癒" },
-  { name: "The Moon", meaning: "幻覺，潛意識，迷惘" },
-  { name: "The Sun", meaning: "快樂，成功，光明" },
-  { name: "Judgement", meaning: "覺醒，反省，重生" },
-  { name: "The World", meaning: "完成，整合，自由" },
+  {
+    name: "The Fool",
+    zh: "愚者｜新的開始，自由，冒險",
+    en: "New beginnings, freedom, adventure"
+  },
+  {
+    name: "The Magician",
+    zh: "魔術師｜掌握資源，實現願望",
+    en: "Resourcefulness, manifestation, power"
+  },
+  {
+    name: "The High Priestess",
+    zh: "女祭司｜直覺，潛意識，神祕",
+    en: "Intuition, subconscious, mystery"
+  },
+  {
+    name: "The Empress",
+    zh: "皇后｜豐饒，母性，自然",
+    en: "Fertility, nurturing, abundance"
+  },
+  {
+    name: "The Emperor",
+    zh: "皇帝｜穩定，結構，領導",
+    en: "Stability, structure, leadership"
+  },
+  {
+    name: "The Hierophant",
+    zh: "教皇｜傳統，信仰，導師",
+    en: "Tradition, spirituality, guidance"
+  },
+  {
+    name: "The Lovers",
+    zh: "戀人｜關係，選擇，愛",
+    en: "Love, connection, choice"
+  },
+  {
+    name: "The Chariot",
+    zh: "戰車｜勝利，意志力，掌控",
+    en: "Victory, willpower, control"
+  },
+  {
+    name: "Strength",
+    zh: "力量｜內在力量，勇氣，耐心",
+    en: "Inner strength, courage, patience"
+  },
+  {
+    name: "The Hermit",
+    zh: "隱士｜尋找真理，內省，孤獨",
+    en: "Introspection, solitude, wisdom"
+  },
+  {
+    name: "Wheel of Fortune",
+    zh: "命運之輪｜命運轉變，週期，機會",
+    en: "Cycles, change, destiny"
+  },
+  {
+    name: "Justice",
+    zh: "正義｜公平，因果，平衡",
+    en: "Fairness, truth, law"
+  },
+  {
+    name: "The Hanged Man",
+    zh: "倒吊人｜暫停，轉變觀點，放下",
+    en: "Letting go, new perspective, sacrifice"
+  },
+  {
+    name: "Death",
+    zh: "死神｜結束，重生，蛻變",
+    en: "Transformation, endings, renewal"
+  },
+  {
+    name: "Temperance",
+    zh: "節制｜平衡，融合，調和",
+    en: "Balance, harmony, patience"
+  },
+  {
+    name: "The Devil",
+    zh: "惡魔｜束縛，慾望，誘惑",
+    en: "Addiction, materialism, shadow self"
+  },
+  {
+    name: "The Tower",
+    zh: "高塔｜突發改變，覺醒，崩壞",
+    en: "Upheaval, chaos, revelation"
+  },
+  {
+    name: "The Star",
+    zh: "星星｜希望，靈感，療癒",
+    en: "Hope, inspiration, serenity"
+  },
+  {
+    name: "The Moon",
+    zh: "月亮｜迷惘，潛意識，幻象",
+    en: "Illusion, intuition, confusion"
+  },
+  {
+    name: "The Sun",
+    zh: "太陽｜快樂，成功，光明",
+    en: "Joy, success, positivity"
+  },
+  {
+    name: "Judgement",
+    zh: "審判｜反省，清醒，重生",
+    en: "Reflection, reckoning, rebirth"
+  },
+  {
+    name: "The World",
+    zh: "世界｜完成，整合，自由",
+    en: "Completion, unity, accomplishment"
+  },
 ];
 
 function drawCard() {
-  const randomIndex = Math.floor(Math.random() * tarotCards.length);
-  const card = tarotCards[randomIndex];
+  const card = tarotCards[Math.floor(Math.random() * tarotCards.length)];
 
-  // 顯示牌名與意義
-  const result = document.getElementById("result") || document.createElement("div");
-  result.id = "result";
-  result.innerHTML = `<h2>${card.name}</h2><p>${card.meaning}</p>`;
-  document.body.appendChild(result);
-
-  // 顯示圖片
-  const imageContainer = document.getElementById("image-container") || document.createElement("div");
-  imageContainer.id = "image-container";
-  imageContainer.innerHTML = "";
-
-  const img = document.createElement("img");
-  const filename = card.name.toLowerCase().replace(/\s/g, "-") + ".jpg";
-  img.src = `cards/${filename}`;
-  img.alt = card.name;
-  img.style.maxWidth = "300px";
-  img.style.marginTop = "10px";
-
-  imageContainer.appendChild(img);
-  document.body.appendChild(imageContainer);
+  const result = document.getElementById("result");
+  result.innerHTML = `
+    <h2>${card.name}</h2>
+    <p><strong>中文：</strong>${card.zh}</p>
+    <p><strong>English:</strong> ${card.en}</p>
+  `;
 }
