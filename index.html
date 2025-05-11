@@ -2,48 +2,15 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Noto Sans TC", sans-serif;
-      background: transparent;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .card-container {
-      display: flex;
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 16px;
-      padding: 16px;
-      color: white;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-      max-width: 600px;
-    }
-    .card-image {
-      width: 140px;
-      height: auto;
-      margin-right: 16px;
-      border-radius: 12px;
-    }
-    .card-text {
-      font-size: 18px;
-      line-height: 1.5em;
-    }
-    .card-title {
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>無限抽塔羅牌</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="card-container">
-    <img class="card-image" src="https://files.oaiusercontent.com/file-000000000d9061f7b2b1c4f145e58902/mnt/data/An_illustration_for_the_Strength_tarot_card_depict.png" alt="今日塔羅牌">
-    <div class="card-text">
-      <div class="card-title">今日抽牌：力量牌</div>
-      面對挑戰，內心才是你的真正力量。今天適合沉穩處事，以柔克剛。
-    </div>
-  </div>
+  <h1>🔮 無限抽塔羅牌 🔮</h1>
+  <div id="card-container"></div>
+  <button id="draw-button">抽一張牌</button>
+
+  <script src="script.js"></script>
 </body>
 </html>
